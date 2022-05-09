@@ -17,7 +17,7 @@ class AuthenticateUserController {
         });
 
 
-        return response.json(token);
+        return response.json({token});
 
     }
 }

@@ -14,9 +14,12 @@ class AuthenticateUserService {
         const usersRepository = getCustomRepository(UsersRepositories);
 
         //Verificar se email existe
-        const user = await usersRepository.findOne({
-            email,
-        })
+        const user = await usersRepository.findOne(
+            { email, },
+            {
+                select: ["id","email","password"]
+            }
+        )
 
 
         if (!user) {
@@ -32,6 +35,7 @@ class AuthenticateUserService {
 
         //Gerar token
         const token = sign({
+            id: user.id,
             email: user.email
         }, "a35c870eb82f64b9f9dcf01115bbc9bd", {
             subject: user.id,

@@ -1,6 +1,7 @@
 import { getCustomRepository } from "typeorm";
 import { UsersRepositories } from "../repositories/UsersRepositories";
 import { hash } from "bcryptjs"
+import { stringify } from "uuid";
 
 interface IUserRequest {
     name: string;
@@ -8,6 +9,16 @@ interface IUserRequest {
     admin?: boolean;
     password: string
 }
+
+
+interface IUserResponse {
+    id: string
+    name: string;
+    email: string;
+    admin: boolean;
+    created_at: Date;
+    updated_at: Date;
+};
 
 class CreateUserService {
 
@@ -35,9 +46,36 @@ class CreateUserService {
             password: passwordHash
         });
 
-        await usersRepository.save(user);
+        /*const user: IUserResponse = usersRepository.create({
+            name,
+            email,
+            admin,
+            password: passwordHash
+        });*/
+         
 
-        return user;
+        /*const iUser = function (user: IUserResponse) {
+            
+            return user
+        };*/
+
+        const iUser: IUserResponse = { 
+            id: user.id ,
+            name: user.name,
+            email: user.email,
+            admin: user.admin,
+            created_at: user.created_at,
+            updated_at: user.updated_at
+        }
+
+        await usersRepository.save(iUser);
+
+        return iUser
+        
+
+       // let funcionario: string = "Eduardo";
+        
+        
     }
 }
 
