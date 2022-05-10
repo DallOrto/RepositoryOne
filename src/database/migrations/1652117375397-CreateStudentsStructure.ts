@@ -33,7 +33,7 @@ export class CreateStudentsStructure1652117375397 implements MigrationInterface 
                         type: "varchar"
                     },
                     {
-                        name: "loguin",
+                        name: "login",
                         type: "varchar"
                     },
                     {

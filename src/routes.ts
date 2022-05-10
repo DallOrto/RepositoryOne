@@ -15,7 +15,9 @@ import { ListUsersController } from "./controllers/ListUsersController";
 import { CreateNetworkController } from "./controllers/CreateNetworkController";
 import { CreateSchoolController } from "./controllers/CreateSchoolController";
 import { CreateStudentController } from "./controllers/CreateStudentController";
-
+import { ListStudentsController } from "./controllers/ListStudentsController";
+import { ListNetworksController } from "./controllers/ListNetworksController";
+import { ListSchoolsController } from "./controllers/ListSchoolsController";
 
 const router = Router();
 
@@ -28,11 +30,16 @@ const listUserReceiveComplimentsController = new ListUserReceiveComplimentsContr
 const listTagsController = new ListTagsController();
 const listUsersController = new ListUsersController();
 
+
 // PROJETO RAFINHA 1ª FASE
 
 const createNetworkController = new CreateNetworkController();
 const createSchoolController = new CreateSchoolController();
 const createStudentController = new CreateStudentController();
+const listStudentsController = new ListStudentsController();
+const listNetworksController = new ListNetworksController();
+const listSchoolsController = new ListSchoolsController();
+
 
 
 
@@ -49,7 +56,10 @@ router.get("/users", ensureAuthenticated, listUsersController.handle);
 
 router.post("/network", createNetworkController.handle);
 router.post("/school", createSchoolController.handle);
-router.post("/student", createStudentController.handle);
+router.post("/students", createStudentController.handle);
+router.get("/students", listStudentsController.handle);
+router.get("/networks", listNetworksController.handle);
+router.get("/schools", listSchoolsController.handle);
 
 
 export { router };
