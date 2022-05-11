@@ -12,7 +12,7 @@ interface IUserRequest {
 
 
 interface IUserResponse {
-    id: string
+    id: string;
     name: string;
     email: string;
     admin: boolean;
@@ -46,19 +46,6 @@ class CreateUserService {
             password: passwordHash
         });
 
-        /*const user: IUserResponse = usersRepository.create({
-            name,
-            email,
-            admin,
-            password: passwordHash
-        });*/
-         
-
-        /*const iUser = function (user: IUserResponse) {
-            
-            return user
-        };*/
-
         const iUser: IUserResponse = { 
             id: user.id ,
             name: user.name,
@@ -68,12 +55,10 @@ class CreateUserService {
             updated_at: user.updated_at
         }
 
-        await usersRepository.save(iUser);
+        await usersRepository.save(user);
 
         return iUser
-        
-
-       // let funcionario: string = "Eduardo";
+    
         
         
     }
