@@ -55,7 +55,7 @@ class CreateUserService {
             updated_at: user.updated_at
         }
 
-        await usersRepository.save(iUser);
+        await usersRepository.save(user);
 
         return iUser
     

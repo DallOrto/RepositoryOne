@@ -1,5 +1,6 @@
-import { Entity, PrimaryColumn, Column, CreateDateColumn, UpdateDateColumn } from "typeorm";
+import { Entity, PrimaryColumn, Column, CreateDateColumn, UpdateDateColumn, JoinColumn, ManyToOne } from "typeorm";
 import { v4 as uuid } from "uuid";
+import { Network } from "./Network";
 
 @Entity("schools")
 class School {
@@ -11,7 +12,11 @@ class School {
     name: string;
 
     @Column()
-    network: string;
+    network_id: string;
+
+    @JoinColumn({name: "network_id" })
+    @ManyToOne(()=> Network)
+    network: Network;
 
     @CreateDateColumn()
     created_at: Date;

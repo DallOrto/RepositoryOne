@@ -1,4 +1,4 @@
-import {MigrationInterface, QueryRunner, Table} from "typeorm";
+import {MigrationInterface, QueryRunner, Table, TableForeignKey} from "typeorm";
 
 export class CreateSchoolStructure1652109190541 implements MigrationInterface {
 
@@ -17,8 +17,8 @@ export class CreateSchoolStructure1652109190541 implements MigrationInterface {
                     type: "varchar",
                 },
                 {
-                    name: "network",
-                    type: "varchar"
+                    name: "network_id",
+                    type: "uuid"
                 },
                 {
                     name: "created_at",
@@ -29,6 +29,16 @@ export class CreateSchoolStructure1652109190541 implements MigrationInterface {
                     name: "updated_at",
                     type: "timestamp",
                     default: "now()"
+                },
+            ],
+            foreignKeys:[
+                {   
+                    name: "FKNetworkSchools",
+                    referencedTableName: "network",
+                    referencedColumnNames: ["id"],
+                    columnNames: ["network_id"],
+                    onDelete: "SET NULL",
+                    onUpdate: "SET NULL"
                 },
             ]
         })

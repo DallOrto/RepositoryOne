@@ -3,12 +3,12 @@ import { SchoolRepositories } from "../repositories/SchoolRepositories";
 
 interface ISchoolRequest {
     name: string;
-    network: string;
+    network_id: string;
 }
 
 
 class CreateSchoolService {
-    async execute({name, network}: ISchoolRequest) {
+    async execute({name, network_id}: ISchoolRequest) {
         const schoolRepositories = getCustomRepository(SchoolRepositories);
 
         if(!name) {
@@ -18,7 +18,7 @@ class CreateSchoolService {
 
         const school = schoolRepositories.create({
             name,
-            network
+            network_id
         });
 
         await schoolRepositories.save(school);
